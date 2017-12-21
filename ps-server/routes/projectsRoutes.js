@@ -4,7 +4,10 @@ var knex = require('../db/knex');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  knex('projects').select().then(projects => res.json(projects))
+  knex('projects')
+    .select('projects.*', 'users.name as author')
+    .innerJoin('users', 'projects.author_id', 'users.id')
+    .then(projects => res.json(projects))
 });
 
 router.get('/:id', function (req, res) {

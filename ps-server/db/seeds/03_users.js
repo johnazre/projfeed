@@ -6,6 +6,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('users').insert([
         {
+          "name": "Barrett Guerrero",
           "role_id": 3,
           "school_id": 2,
           "username": "barrettguerrero",
@@ -13,6 +14,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Cleo Ware",
           "role_id": 1,
           "school_id": 4,
           "username": "cleoware",
@@ -20,6 +22,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Chasity Faulkner",
           "role_id": 2,
           "school_id": 5,
           "username": "chasityfaulkner",
@@ -27,6 +30,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Dillon Lamb",
           "role_id": 1,
           "school_id": 13,
           "username": "dillonlamb",
@@ -34,6 +38,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Wilkins Herrera",
           "role_id": 1,
           "school_id": 7,
           "username": "wilkinsherrera",
@@ -41,6 +46,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Tanner Gibson",
           "role_id": 2,
           "school_id": 14,
           "username": "tannergibson",
@@ -48,6 +54,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Perry Branch",
           "role_id": 1,
           "school_id": 15,
           "username": "perrybranch",
@@ -55,6 +62,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Aileen Potts",
           "role_id": 2,
           "school_id": 6,
           "username": "aileenpotts",
@@ -62,6 +70,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Rosa Mann",
           "role_id": 1,
           "school_id": 18,
           "username": "rosamann",
@@ -69,6 +78,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Neva Osborn",
           "role_id": 1,
           "school_id": 11,
           "username": "nevaosborn",
@@ -76,6 +86,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Holcomb Neal",
           "role_id": 2,
           "school_id": 2,
           "username": "holcombneal",
@@ -83,6 +94,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Luis Abray",
           "role_id": 2,
           "school_id": 8,
           "username": "luisabray",
@@ -90,6 +102,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Maggie Fleming",
           "role_id": 2,
           "school_id": 17,
           "username": "maggiefleming",
@@ -97,6 +110,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Ray Best",
           "role_id": 2,
           "school_id": 6,
           "username": "raybest",
@@ -104,6 +118,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Rae Williams",
           "role_id": 1,
           "school_id": 12,
           "username": "raewilliams",
@@ -111,6 +126,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Dina Nguyen",
           "role_id": 2,
           "school_id": 15,
           "username": "dinanguyen",
@@ -118,6 +134,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Ola Burns",
           "role_id": 1,
           "school_id": 13,
           "username": "olaburns",
@@ -125,6 +142,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Price Newman",
           "role_id": 2,
           "school_id": 13,
           "username": "pricenewman",
@@ -132,6 +150,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Samantha Fowler",
           "role_id": 1,
           "school_id": 13,
           "username": "samanthafowler",
@@ -139,6 +158,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Deann Velez",
           "role_id": 1,
           "school_id": 3,
           "username": "deannvelez",
@@ -146,6 +166,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Alisha Harrison",
           "role_id": 2,
           "school_id": 13,
           "username": "alishaharrison",
@@ -153,6 +174,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Pate Parks",
           "role_id": 2,
           "school_id": 10,
           "username": "pateparks",
@@ -160,6 +182,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Schroder Butler",
           "role_id": 2,
           "school_id": 12,
           "username": "schroederbutler",
@@ -167,6 +190,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Lee Wyatt",
           "role_id": 1,
           "school_id": 13,
           "username": "leewyatt",
@@ -174,6 +198,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Georgina Sheppard",
           "role_id": 2,
           "school_id": 12,
           "username": "georginasheppard",
@@ -181,6 +206,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Perkins Wilkinson",
           "role_id": 1,
           "school_id": 17,
           "username": "perkinswilkinson",
@@ -188,6 +214,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Moore Hall",
           "role_id": 1,
           "school_id": 10,
           "username": "moorehall",
@@ -195,6 +222,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Daniel Holt",
           "role_id": 2,
           "school_id": 10,
           "username": "danielholt",
@@ -202,6 +230,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Giles Bailey",
           "role_id": 1,
           "school_id": 12,
           "username": "gilesbailey",
@@ -209,6 +238,7 @@ exports.seed = function(knex, Promise) {
           "password": "hello"
         },
         {
+          "name": "Melendez McKee",
           "role_id": 2,
           "school_id": 20,
           "username": "melendezmckee",

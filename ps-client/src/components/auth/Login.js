@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap'
+import { Button, Form, FormGroup, Label, Container, Row, Col } from 'reactstrap'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -9,6 +9,11 @@ export class Login extends Component {
 
   submitLogin = (creds) => {
     console.log('creds', creds)
+    if(creds.role === '1') {
+      this.props.history.push('/student/dashboard')
+    } else {
+      this.props.history.push('/staff/dashboard')
+    }
   }
 
   render() {
@@ -17,6 +22,14 @@ export class Login extends Component {
         <Row style={{marginTop: '15vh'}}>
           <Col lg={{ size: 6, offset: 3 }} style={{ border: '1px solid #c9c5c2', padding: 35, boxShadow: "3px 3px 47px 0px rgba(0,0,0,0.5)"}}>
             <Form onSubmit={this.props.handleSubmit(this.submitLogin)}>
+              <FormGroup>
+                <Label for="role">I am a:</Label>
+                <Field className="form-control" name="role" component="select" id="role">
+                  <option />
+                  <option value="1">Student</option>
+                  <option value="2">Staff</option>
+                </Field>
+              </FormGroup>
               <FormGroup>
                 <Label for="email">Email</Label>
                 <Field className="form-control" name="email" component="input" type="email" id="email" />
@@ -38,8 +51,6 @@ Login = reduxForm({
   // a unique name for the form
   form: 'loginform'
 })(Login)
-
-console.log('login', Login)
 
 function mapDispatchToProps(dispatch) {
   return {

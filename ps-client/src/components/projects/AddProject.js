@@ -1,28 +1,52 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Container, Row, Col } from 'reactstrap';
+import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { addProject } from '../../actions/projects'
 
 class AddProject extends Component {
+
+  addProject = (project) => {
+    project.collection_id = +project.collection_id
+    this.props.addProject(project, this.props.history)
+  }
+
   render () {
+    let collectionList = this.props.collections.map(collection => {
+      return <option key={collection.id} value={collection.id}>{collection.name}</option>
+    })
     return (
       <Container className="main-wrapper">
         <Row style={{marginTop: '10vh', marginBottom: '10vh'}}>
           <Col lg={{ size: 6, offset: 3 }} style={{ border: '1px solid #c9c5c2', padding: 35, boxShadow: "3px 3px 47px 0px rgba(0,0,0,0.5)"}}>
-            <Form>
+            <Form onSubmit={this.props.handleSubmit(this.addProject)}>
               <FormGroup>
                 <Label for="project-name">Project Name (Required)</Label>
-                <Input type="text" id="project-name" />
+                <Field name="name" component="input" className="form-control" type="text" id="project-name" />
+              </FormGroup>
+              <FormGroup>
+                <Label for="description">Description</Label>
+                <Field name="description" component="textarea" className="form-control" type="text" id="description" />
+              </FormGroup>
+              <FormGroup>
+                <Label for="collection">Collection (Required)</Label>
+                <Field name="collection_id" component="select" className="form-control" type="text" id="project-name">
+                  <option />
+                  {collectionList}
+                </Field>
               </FormGroup>
               <FormGroup>
                 <Label for="github_url">Github Repo URL (Required)</Label>
-                <Input type="text" id="github_url" />
+                <Field name="github_url" component="input" className="form-control" type="text" id="github_url" />
               </FormGroup>
               <FormGroup>
-                <Label for="hosted-url">Hosted URL</Label>
-                <Input type="text" id="hosted-url" />
+                <Label for="hosted_url">Hosted URL</Label>
+                <Field name="hosted_url" component="input" className="form-control" type="text" id="hosted-url" />
               </FormGroup>
               <Button
                 color="primary"
-                onClick={() => this.props.history.push('/dashboard')}
+                type="submit"
               >
                 Submit
               </Button>
@@ -34,4 +58,22 @@ class AddProject extends Component {
   }
 }
 
-export default AddProject
+AddProject = reduxForm({
+  // a unique name for the form
+  form: 'add_project'
+})(AddProject)
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addProject: bindActionCreators(addProject, dispatch),
+  }
+}
+
+function mapStateToProps(state, props) {
+  return {
+    // TODO: Needs to integrate with auth to replace the 10 with user's school id
+    collections: state.collections.filter(collection => collection.school_id === 10)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProject)

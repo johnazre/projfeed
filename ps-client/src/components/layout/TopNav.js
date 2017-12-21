@@ -11,7 +11,7 @@ import {
 
 import { Link } from 'react-router-dom'
 
-class TopNav extends React.Component {
+class TopNav extends Component {
   state = {
     isOpen: false
   };

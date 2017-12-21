@@ -3,7 +3,8 @@ exports.up = function(knex, Promise) {
     table.increments()
     table.integer('author_id').references('id').inTable('users').onDelete('CASCADE')
     table.integer('project_id').references('id').inTable('projects').onDelete('CASCADE')
-    table.text('comments').notNullable()
+    table.text('warm_fb').notNullable()
+    table.text('cool_fb').notNullable()
   })
 }
 

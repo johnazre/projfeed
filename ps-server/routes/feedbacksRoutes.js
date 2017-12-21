@@ -4,7 +4,11 @@ var knex = require('../db/knex');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  knex('feedbacks').select().then(feedbacks => res.json(feedbacks))
+  knex('feedbacks')
+    .select('feedbacks.*', 'users.name as author')
+    .innerJoin('users', 'feedbacks.author_id', 'users.id')
+    .orderBy('id', 'asc')
+    .then(feedbacks => res.json(feedbacks))
 });
 
 router.get('/:id', function (req, res) {
