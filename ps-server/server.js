@@ -22,6 +22,7 @@ app.use('/users', require('./routes/usersRoutes'));
 app.use('/collections', require('./routes/collectionsRoutes'));
 app.use('/projects', require('./routes/projectsRoutes'));
 app.use('/feedbacks', require('./routes/feedbacksRoutes'));
+app.use('/auth', require('./routes/authRoutes'));
 
 app.listen(port, function() {
   console.log("listening on port: ", port);

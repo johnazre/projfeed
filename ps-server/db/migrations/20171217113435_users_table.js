@@ -4,7 +4,6 @@ exports.up = function(knex, Promise) {
     table.string('name').notNullable()
     table.integer('role_id').references('id').inTable('roles').onDelete('CASCADE')
     table.integer('school_id').references('id').inTable('schools').onDelete('CASCADE')
-    table.string('username').notNullable().unique()
     table.string('email').notNullable().unique()
     table.string('password').notNullable()
   })
