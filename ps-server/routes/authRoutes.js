@@ -7,13 +7,16 @@ const verifyToken = require('../lib/util_methods').verifyToken
 const errHandler = require('../lib/util_methods').errHandler
 
 router.post('/login', function(req, res) {
+  // Find the user by email
   knex('users')
     .where('email', req.body.email)
     .then(result => {
       let user = result[0];
+      // If user can't be found, send 403 (Forbidden)
       if(!user) {
         res.sendStatus(403)
       } else {
+        // Otherwise, respond with signed token and user object
         jwt.sign({ user }, 'doobiedoo', {expiresIn: '2d'}, (err, token) => {
           res.json({ token, user })
         })
@@ -24,8 +27,10 @@ router.post('/login', function(req, res) {
 
 router.post('/signup', function(req, res) {
   let { name, role_id, school_id, email, password } = req.body
+
   // Hash the incoming password
   bcrypt.hash(password, null, null, function(err, hash) {
+
     // Build new user to be inserted into the database
     let newUser = {
       name,
@@ -35,6 +40,7 @@ router.post('/signup', function(req, res) {
       password: hash
     }
 
+    // Insert new user into database
     knex('users')
       .insert(newUser, '*')
       .then(user => res.json(user[0]))
