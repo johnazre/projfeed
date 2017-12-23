@@ -8,6 +8,8 @@ import Signup from './components/auth/Signup'
 import StudentDashboard from './components/students/StudentDashboard'
 import StaffDashboard from './components/staff/StaffDashboard'
 
+import CheckAuth from './components/auth/CheckAuth'
+
 import AddSchool from './components/schools/AddSchool'
 import AddProject from './components/projects/AddProject'
 import StaffProjectDetails from './components/staff/ProjectDetails'
@@ -35,16 +37,16 @@ export class App extends Component {
             <Route exact path="/signup" component={Signup}/>
 
             {/* Student routes*/}
-            <Route exact path="/students/dashboard" component={StudentDashboard}/>
-            <Route exact path="/students/projects/add" component={AddProject}/>
-            <Route exact path="/students/projects/:id" component={StudentProjectDetails}/>
+            <Route exact path="/students/dashboard" component={CheckAuth(StudentDashboard)}/>
+            <Route exact path="/students/projects/add" component={CheckAuth(AddProject)}/>
+            <Route exact path="/students/projects/:id" component={CheckAuth(StudentProjectDetails)}/>
 
             {/* Staff routes*/}
-            <Route exact path="/staff/dashboard" component={StaffDashboard}/>
-            <Route exact path="/school/add" component={AddSchool}/>
-            <Route exact path="/collections/add" component={AddCollection}/>
-            <Route exact path="/collections/:id" component={CollectionDetails}/>
-            <Route exact path="/collections/:coll_id/projects/:proj_id" component={StaffProjectDetails}/>
+            <Route exact path="/staff/dashboard" component={CheckAuth(StaffDashboard)}/>
+            <Route exact path="/school/add" component={CheckAuth(AddSchool)}/>
+            <Route exact path="/collections/add" component={CheckAuth(AddCollection)}/>
+            <Route exact path="/collections/:id" component={CheckAuth(CollectionDetails)}/>
+            <Route exact path="/collections/:coll_id/projects/:proj_id" component={CheckAuth(StaffProjectDetails)}/>
 
 
 

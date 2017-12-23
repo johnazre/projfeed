@@ -10,6 +10,7 @@ export const USER_SIGNUP_REJECTED = 'USER_SIGNUP_REJECTED'
 
 export const USER_LOGOUT = 'USER_LOGOUT'
 
+/* jshint ignore:start */
 export const userLogin = (creds, history) => {
   return async (dispatch) => {
     try {
@@ -36,7 +37,7 @@ export const userLogin = (creds, history) => {
 
 export const userLogout = (creds) => {
   return (dispatch) => {
-    dispatch({type: USER_LOGOUT})
+    dispatch({ type: USER_LOGOUT })
   }
 }
 
