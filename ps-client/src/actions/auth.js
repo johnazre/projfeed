@@ -10,7 +10,7 @@ export const USER_SIGNUP_REJECTED = 'USER_SIGNUP_REJECTED'
 
 export const USER_LOGOUT = 'USER_LOGOUT'
 
-export const userLogin = (creds) => {
+export const userLogin = (creds, history) => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
@@ -19,6 +19,12 @@ export const userLogin = (creds) => {
         type: USER_LOGIN_SUCCESS,
         payload: isLoggedIn
       })
+      let { authed, role } = isLoggedIn.data
+      if(role === '1' && authed) {
+        history.push('/students/dashboard')
+      } else {
+        history.push('/staff/dashboard')
+      }
     } catch(e) {
       dispatch({
         type: USER_LOGIN_REJECTED,

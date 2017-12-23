@@ -8,12 +8,7 @@ import { userLogin } from '../../actions/auth'
 export class Login extends Component {
 
   submitLogin = (creds) => {
-    this.props.userLogin(creds)
-    // if(creds.role === '1') {
-    //   this.props.history.push('/student/dashboard')
-    // } else {
-    //   this.props.history.push('/staff/dashboard')
-    // }
+    this.props.userLogin(creds, this.props.history)
   }
 
   render() {
