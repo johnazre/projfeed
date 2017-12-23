@@ -34,7 +34,7 @@ export const userLogout = (creds) => {
   }
 }
 
-export const userSignup = (creds) => {
+export const userSignup = (creds, history) => {
   return async (dispatch) => {
     try {
       dispatch({type: USER_SIGNUP_PENDING})
@@ -43,6 +43,7 @@ export const userSignup = (creds) => {
         type: USER_SIGNUP_SUCCESS,
         payload: newUser
       })
+      history.push('/login')
     } catch(e) {
       dispatch({
         type: USER_SIGNUP_REJECTED,

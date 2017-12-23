@@ -9,7 +9,8 @@ import { userSignup } from '../../actions/auth'
 export class Signup extends Component {
 
   userSignup = (user) => {
-    this.props.userSignup(user)
+    // console.log('user', user)
+    this.props.userSignup(user, this.props.history)
   }
 
   render() {
@@ -18,6 +19,10 @@ export class Signup extends Component {
         <Row style={{marginTop: '10vh', marginBottom: '10vh'}}>
           <Col lg={{ size: 6, offset: 3 }} style={{ border: '1px solid #c9c5c2', padding: 35, boxShadow: "3px 3px 47px 0px rgba(0,0,0,0.5)"}}>
             <Form onSubmit={this.props.handleSubmit(this.userSignup)}>
+              <FormGroup>
+                <Label for="name">Name</Label>
+                <Field name="name" component="input" className="form-control" type="text" id="name" />
+              </FormGroup>
               <FormGroup>
                 <Label for="email">Email</Label>
                 <Field name="email" component="input" className="form-control" type="email" id="email" />
@@ -30,7 +35,10 @@ export class Signup extends Component {
                 <Label for="school">School</Label>
                 <Field name="school_id" component="select" className="form-control" type="select" id="school">
                   <option />
-                  {this.props.schools.map(school => <option key={school.id} value={school.id}>{school.name}</option>)}
+                  {
+                    this.props.schools.map(school =>
+                      <option key={school.id} value={school.id}>{school.name}</option>)
+                  }
                 </Field>
               </FormGroup>
               <FormGroup>
