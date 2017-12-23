@@ -7,6 +7,7 @@ router.get('/', function (req, res, next) {
   knex('projects')
     .select('projects.*', 'users.name as author')
     .innerJoin('users', 'projects.author_id', 'users.id')
+    .orderBy('id', 'asc')
     .then(projects => res.json(projects))
 });
 
