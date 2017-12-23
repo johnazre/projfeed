@@ -18,7 +18,9 @@ router.post('/login', function(req, res) {
       } else {
         // Otherwise, respond with signed token and user object
         jwt.sign({ user }, 'doobiedoo', {expiresIn: '2d'}, (err, token) => {
-          res.json({ token, user })
+          // Remove password from user object
+          let { password, ...newUser } = user
+          res.json({ token, newUser, authed: true })
         })
       }
     })
