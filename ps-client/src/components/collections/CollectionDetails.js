@@ -35,7 +35,7 @@ class CollectionDetails extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    projects: state.projects
+    projects: state.projects.filter(project => project.collection_id == props.match.params.id)
   }
 }
 

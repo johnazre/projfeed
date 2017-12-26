@@ -44,8 +44,11 @@ class StaffDashboard extends Component {
 }
 
 function mapStateToProps(state, props) {
+  // Connect with auth to get user's id and parse the result to an object so the id can be accessed
+  let schoolId = JSON.parse(localStorage.getItem('user')).user.school_id
+
   return {
-    collections: state.collections
+    collections: state.collections.filter(collection => collection.school_id == schoolId)
   }
 }
 
