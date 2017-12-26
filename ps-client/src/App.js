@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import './App.css';
+// @flow
+import React, { Component } from 'react'
+import './App.css'
 
 import TopNav from './components/layout/TopNav'
 import Home from './components/Home'
@@ -17,45 +18,68 @@ import StudentProjectDetails from './components/students/ProjectDetails'
 import AddCollection from './components/collections/AddCollection'
 import CollectionDetails from './components/collections/CollectionDetails'
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-export class App extends Component {
+export class App extends Component<null, null> {
+	render() {
+		return (
+			<Router>
+				<div>
+					<TopNav />
 
-  render() {
-    return (
-      <Router>
-        <div>
-          <TopNav />
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/signup" component={Signup} />
 
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/login" component={Login}/>
-            <Route exact path="/signup" component={Signup}/>
+						{/* Student routes*/}
+						<Route
+							exact
+							path="/students/dashboard"
+							component={CheckAuth(StudentDashboard)}
+						/>
+						<Route
+							exact
+							path="/students/projects/add"
+							component={CheckAuth(AddProject)}
+						/>
+						<Route
+							exact
+							path="/students/projects/:id"
+							component={CheckAuth(StudentProjectDetails)}
+						/>
 
-            {/* Student routes*/}
-            <Route exact path="/students/dashboard" component={CheckAuth(StudentDashboard)}/>
-            <Route exact path="/students/projects/add" component={CheckAuth(AddProject)}/>
-            <Route exact path="/students/projects/:id" component={CheckAuth(StudentProjectDetails)}/>
-
-            {/* Staff routes*/}
-            <Route exact path="/staff/dashboard" component={CheckAuth(StaffDashboard)}/>
-            <Route exact path="/school/add" component={CheckAuth(AddSchool)}/>
-            <Route exact path="/collections/add" component={CheckAuth(AddCollection)}/>
-            <Route exact path="/collections/:id" component={CheckAuth(CollectionDetails)}/>
-            <Route exact path="/collections/:coll_id/projects/:proj_id" component={CheckAuth(StaffProjectDetails)}/>
-
-
-
-
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+						{/* Staff routes*/}
+						<Route
+							exact
+							path="/staff/dashboard"
+							component={CheckAuth(StaffDashboard)}
+						/>
+						<Route
+              exact
+              path="/school/add"
+              component={CheckAuth(AddSchool)}
+            />
+						<Route
+							exact
+							path="/collections/add"
+							component={CheckAuth(AddCollection)}
+						/>
+						<Route
+							exact
+							path="/collections/:id"
+							component={CheckAuth(CollectionDetails)}
+						/>
+						<Route
+							exact
+							path="/collections/:coll_id/projects/:proj_id"
+							component={CheckAuth(StaffProjectDetails)}
+						/>
+					</Switch>
+				</div>
+			</Router>
+		)
+	}
 }
 
-export default App;
+export default App

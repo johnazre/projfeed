@@ -18,14 +18,6 @@ export class Login extends Component {
           <Col lg={{ size: 6, offset: 3 }} style={{ border: '1px solid #c9c5c2', padding: 35, boxShadow: "3px 3px 47px 0px rgba(0,0,0,0.5)"}}>
             <Form onSubmit={this.props.handleSubmit(this.submitLogin)}>
               <FormGroup>
-                <Label for="role">I am a:</Label>
-                <Field className="form-control" name="role" component="select" id="role">
-                  <option />
-                  <option value="1">Student</option>
-                  <option value="2">Staff</option>
-                </Field>
-              </FormGroup>
-              <FormGroup>
                 <Label for="email">Email</Label>
                 <Field className="form-control" name="email" component="input" type="email" id="email" />
               </FormGroup>

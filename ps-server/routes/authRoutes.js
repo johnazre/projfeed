@@ -20,6 +20,7 @@ router.post('/login', function(req, res) {
         jwt.sign({ user }, 'doobiedoo', {expiresIn: '2d'}, (err, token) => {
           // Remove password from user object
           let { password, ...newUser } = user
+          console.log('user', newUser);
           res.json({ token, user: newUser, authed: true })
         })
       }

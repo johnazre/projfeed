@@ -1,3 +1,4 @@
+// @flow
 import axios from 'axios'
 
 export const USER_LOGIN_PENDING = 'USER_LOGIN_PENDING'
@@ -11,8 +12,23 @@ export const USER_SIGNUP_REJECTED = 'USER_SIGNUP_REJECTED'
 export const USER_LOGOUT = 'USER_LOGOUT'
 
 /* jshint ignore:start */
-export const userLogin = (creds, history) => {
-  return async (dispatch) => {
+type LoginCreds = {
+  email: string,
+  password: string
+}
+
+type SignupCreds = {
+  name: string,
+  email: string,
+  password: string
+}
+
+type History = {
+  push: Function
+}
+
+export const userLogin = (creds: LoginCreds, history: History) => {
+  return async (dispatch: Dispatch) => {
     try {
       dispatch({type: USER_LOGIN_PENDING})
       let isLoggedIn = await axios.post(`http://localhost:8000/auth/login`, creds)
@@ -20,8 +36,10 @@ export const userLogin = (creds, history) => {
         type: USER_LOGIN_SUCCESS,
         payload: isLoggedIn
       })
-      let { authed, role } = isLoggedIn.data
-      if(role === '1' && authed) {
+      let { authed } = isLoggedIn.data
+      let { role_id } = isLoggedIn.data.user
+      console.log('role', role_id)
+      if(role_id === 1 && authed) {
         history.push('/students/dashboard')
       } else {
         history.push('/staff/dashboard')
@@ -35,14 +53,14 @@ export const userLogin = (creds, history) => {
   }
 }
 
-export const userLogout = (creds) => {
-  return (dispatch) => {
+export const userLogout = () => {
+  return (dispatch: Dispatch) => {
     dispatch({ type: USER_LOGOUT })
   }
 }
 
-export const userSignup = (creds, history) => {
-  return async (dispatch) => {
+export const userSignup = (creds: SignupCreds, history: History) => {
+  return async (dispatch: Dispatch) => {
     try {
       dispatch({type: USER_SIGNUP_PENDING})
       let newUser = await axios.post(`http://localhost:8000/auth/signup`, creds)

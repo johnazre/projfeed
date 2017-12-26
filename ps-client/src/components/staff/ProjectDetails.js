@@ -11,8 +11,12 @@ class ProjectDetails extends Component {
     let { proj_id, coll_id } = this.props.match.params
     // Parse the url param from a string to a number with the "+" next to the variable
     feedback.project_id = +proj_id
-    // TODO: Connect with auth to get user's user_id
-    feedback.author_id = 1
+
+    // Connect with auth to get user's id and parse the result to an object so the id can be accessed
+    let userId = JSON.parse(localStorage.getItem('user')).user.id
+
+    // Set the user inside of the object to be sent by login action
+    feedback.author_id = userId
     this.props.addFeedback(feedback, this.props.history, coll_id)
   }
 

@@ -1,11 +1,26 @@
+// @flow
 import React, { Component } from 'react'
 import { Container, Row, Col, Table } from 'reactstrap'
 import { connect } from 'react-redux'
 
-class ProjectDetails extends Component {
+type Props = {
+  feedbacks: any[],
+  match: {
+    params: {
+      id: number
+    }
+  },
+  project: {
+    img_url: string,
+    name: string,
+    description: string,
+    author: string
+  }
+}
+
+class ProjectDetails extends Component<Props, null> {
 
   render () {
-    console.log('props', this.props);
     let feedbackList = this.props.feedbacks.map(feedback => {
       return (
         <tr key={feedback.id}>
@@ -50,7 +65,7 @@ class ProjectDetails extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state: StoreState, props: Props) {
   return {
     project: state.projects.filter(project => project.id === +props.match.params.id)[0],
     feedbacks: state.feedbacks.filter(feedback => feedback.project_id === +props.match.params.id)
