@@ -53,7 +53,7 @@ export const userLogin = (creds: LoginCreds, history: History) => {
   }
 }
 
-export const userLogout = () => {
+export const userLogout = (history: History) => {
   return (dispatch: Dispatch) => {
     dispatch({ type: USER_LOGOUT })
   }

@@ -18,7 +18,7 @@ import StudentProjectDetails from './components/students/ProjectDetails'
 import AddCollection from './components/collections/AddCollection'
 import CollectionDetails from './components/collections/CollectionDetails'
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 export class App extends Component<null, null> {
 	render() {
@@ -31,6 +31,7 @@ export class App extends Component<null, null> {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/signup" component={Signup} />
+						<Route exact path="/logout" component={() => <Redirect to="/login" />} />
 
 						{/* Student routes*/}
 						<Route

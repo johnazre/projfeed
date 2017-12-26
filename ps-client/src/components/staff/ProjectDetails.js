@@ -17,6 +17,7 @@ class ProjectDetails extends Component {
 
     // Set the user inside of the object to be sent by login action
     feedback.author_id = userId
+
     this.props.addFeedback(feedback, this.props.history, coll_id)
   }
 
