@@ -36,17 +36,21 @@ export const userLogin = (creds: LoginCreds, history: History) => {
         `http://localhost:8000/auth/login`,
         creds
       )
-      dispatch({
-        type: USER_LOGIN_SUCCESS,
-        payload: isLoggedIn
-      })
       let { authed } = isLoggedIn.data
       let { role_id } = isLoggedIn.data.user
-      console.log('role', role_id)
-      if (role_id === 1 && authed) {
-        history.push('/students/dashboard')
+
+      if (isLoggedIn.data.token) {
+        dispatch({
+          type: USER_LOGIN_SUCCESS,
+          payload: isLoggedIn
+        })
+        if (role_id === 1 && authed) {
+          history.push('/students/dashboard')
+        } else {
+          history.push('/staff/dashboard')
+        }
       } else {
-        history.push('/staff/dashboard')
+        history.push('/')
       }
     } catch (e) {
       dispatch({
