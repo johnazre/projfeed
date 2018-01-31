@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  ListGroupItem,
+  Button
+} from 'reactstrap'
 import { connect } from 'react-redux'
 
 class StaffDashboard extends Component {
-  render () {
+  render() {
     let { collections, history } = this.props
     let listOfCollections = collections.map(collection => {
       return (
@@ -19,23 +26,28 @@ class StaffDashboard extends Component {
     })
     return (
       <Container>
-        <Row style={{marginTop: 30}}>
+        <Row style={{ marginTop: 30 }}>
           <Col md={{ size: 8, offset: 2 }}>
-            <p style={{fontSize: '1.7em', marginBottom: 0}}>Which collection of projects will you leave feedback on?</p>
+            <p style={{ fontSize: '1.7em', marginBottom: 0 }}>
+              Which collection of projects will you leave feedback on?
+            </p>
             <small>(Click on the corresponding collection to proceed)</small>
-            <ListGroup>
-              {listOfCollections}
-            </ListGroup>
+            <ListGroup>{listOfCollections}</ListGroup>
           </Col>
         </Row>
-        <Row style={{paddingTop: 30}}>
+        <Row style={{ paddingTop: 30 }}>
           <Col className="text-center">
             <h4>Alternatively, you can add a collection of projects</h4>
           </Col>
         </Row>
         <Row>
           <Col className="text-center">
-            <Button color="primary" onClick={() => this.props.history.push('/collections/add')}>Add New Collection</Button>
+            <Button
+              color="primary"
+              onClick={() => this.props.history.push('/collections/add')}
+            >
+              Add New Collection
+            </Button>
           </Col>
         </Row>
       </Container>
@@ -48,7 +60,9 @@ function mapStateToProps(state, props) {
   let schoolId = JSON.parse(localStorage.getItem('user')).user.school_id
 
   return {
-    collections: state.collections.filter(collection => collection.school_id == schoolId)
+    collections: state.collections.filter(
+      collection => collection.school_id === Number(schoolId)
+    )
   }
 }
 
