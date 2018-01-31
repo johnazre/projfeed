@@ -9,7 +9,8 @@ import {
 
 let initialState = {
   authed: false,
-  user: {}
+  user: {},
+  showLoginError: false
 }
 
 export default (state = initialState, action) => {
@@ -17,22 +18,27 @@ export default (state = initialState, action) => {
     case USER_LOGIN_SUCCESS:
       localStorage.setItem('user', JSON.stringify(action.payload.data))
       return {
+        ...state,
         user: JSON.parse(localStorage.getItem('user')).user,
         authed: true
       }
     case USER_LOGIN_REJECTED:
-      return state
+      return { ...state, showLoginError: true }
     case USER_SIGNUP_SUCCESS:
       return state
     case USER_SIGNUP_REJECTED:
       return state
     case USER_LOGOUT:
       localStorage.removeItem('user')
-      return { user: {}, authed: false }
+      return { ...state, user: {}, authed: false }
     case IS_AUTHED:
       return localStorage.getItem('user')
-        ? { authed: true, user: JSON.parse(localStorage.getItem('user')).user }
-        : { authed: false, user: JSON.parse(localStorage.getItem('user')).user }
+        ? {
+            ...state,
+            authed: true,
+            user: JSON.parse(localStorage.getItem('user')).user
+          }
+        : { ...state, authed: false, user: {} }
     default:
       return state
   }
