@@ -25,7 +25,7 @@ class CollectionDetails extends Component {
               width="100%"
               src={project.img_url}
               alt="Card image cap"
-              style={{ maxHeight: 150 }}
+              style={{ height: 150 }}
             />
             <CardBody>
               <CardTitle>{project.name}</CardTitle>
