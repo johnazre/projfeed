@@ -19,28 +19,41 @@ type Props = {
 }
 
 class ProjectDetails extends Component<Props, null> {
-
-  render () {
+  render() {
+    console.log('this.props in pd', this.props)
     let feedbackList = this.props.feedbacks.map(feedback => {
       return (
         <tr key={feedback.id}>
           <th scope="row">{feedback.id}</th>
-          <td style={{width: '15%'}}>{feedback.author}</td>
+          <td style={{ width: '15%' }}>{feedback.author}</td>
           <td>{feedback.cool_fb}</td>
           <td>{feedback.warm_fb}</td>
         </tr>
       )
     })
     return (
-      <Container style={{marginTop: 30}}>
+      <Container style={{ marginTop: 30 }}>
         <Row>
           <Col>
             <p>
-              {this.props.project && <img src={this.props.project.img_url} alt="project screenshot"/>}
+              {this.props.project && (
+                <img
+                  src={this.props.project.img_url}
+                  alt="project screenshot"
+                />
+              )}
             </p>
-            <p><b>Project Name:</b> {this.props.project && this.props.project.name}</p>
-            <p><b>Project Description:</b> {this.props.project && this.props.project.description}</p>
-            <p><b>Author:</b> {this.props.project && this.props.project.author}</p>
+            <p>
+              <b>Project Name:</b>{' '}
+              {this.props.project && this.props.project.name}
+            </p>
+            <p>
+              <b>Project Description:</b>{' '}
+              {this.props.project && this.props.project.description}
+            </p>
+            <p>
+              <b>Author:</b> {this.props.project && this.props.project.author}
+            </p>
           </Col>
         </Row>
         <Row>
@@ -54,9 +67,7 @@ class ProjectDetails extends Component<Props, null> {
                   <th>Warm Feedback</th>
                 </tr>
               </thead>
-              <tbody>
-                {feedbackList}
-              </tbody>
+              <tbody>{feedbackList}</tbody>
             </Table>
           </Col>
         </Row>
@@ -67,8 +78,12 @@ class ProjectDetails extends Component<Props, null> {
 
 function mapStateToProps(state: StoreState, props: Props) {
   return {
-    project: state.projects.filter(project => project.id === +props.match.params.id)[0],
-    feedbacks: state.feedbacks.filter(feedback => feedback.project_id === +props.match.params.id)
+    project: state.projects.filter(
+      project => project.id === +props.match.params.id
+    )[0],
+    feedbacks: state.feedbacks.filter(
+      feedback => feedback.project_id === +props.match.params.id
+    )
   }
 }
 

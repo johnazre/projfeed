@@ -6,8 +6,7 @@ import { bindActionCreators } from 'redux'
 import { addFeedback } from '../../actions/feedbacks'
 
 class ProjectDetails extends Component {
-
-  addFeedback = (feedback) => {
+  addFeedback = feedback => {
     let { proj_id, coll_id } = this.props.match.params
     // Parse the url param from a string to a number with the "+" next to the variable
     feedback.project_id = +proj_id
@@ -21,18 +20,31 @@ class ProjectDetails extends Component {
     this.props.addFeedback(feedback, this.props.history, coll_id)
   }
 
-  render () {
-    console.log('props', this.props);
+  render() {
+    console.log('props', this.props)
     return (
-      <Container style={{marginTop: 30}}>
+      <Container style={{ marginTop: 30 }}>
         <Row>
           <Col>
             <p>
-              { this.props.project && <img src={this.props.project.img_url} alt="project screenshot"/> }
+              {this.props.project && (
+                <img
+                  src={this.props.project.img_url}
+                  alt="project screenshot"
+                />
+              )}
             </p>
-            <p><b>Project Name:</b> {this.props.project && this.props.project.name}</p>
-            <p><b>Project Description:</b> {this.props.project && this.props.project.description}</p>
-            <p><b>Author:</b> {this.props.project && this.props.project.author}</p>
+            <p>
+              <b>Project Name:</b>{' '}
+              {this.props.project && this.props.project.name}
+            </p>
+            <p>
+              <b>Project Description:</b>{' '}
+              {this.props.project && this.props.project.description}
+            </p>
+            <p>
+              <b>Author:</b> {this.props.project && this.props.project.author}
+            </p>
           </Col>
         </Row>
         <Row>
@@ -40,11 +52,23 @@ class ProjectDetails extends Component {
             <Form onSubmit={this.props.handleSubmit(this.addFeedback)}>
               <FormGroup>
                 <Label for="exampleText">Warm Feedback</Label>
-                <Field className="form-control" name="warm_fb" component="textarea" type="textarea" id="exampleText" />
+                <Field
+                  className="form-control"
+                  name="warm_fb"
+                  component="textarea"
+                  type="textarea"
+                  id="exampleText"
+                />
               </FormGroup>
               <FormGroup>
                 <Label for="exampleText">Cool Feedback</Label>
-                <Field className="form-control" name="cool_fb" component="textarea" type="textarea" id="exampleText" />
+                <Field
+                  className="form-control"
+                  name="cool_fb"
+                  component="textarea"
+                  type="textarea"
+                  id="exampleText"
+                />
               </FormGroup>
               <Button type="submit">Submit</Button>
             </Form>
@@ -62,13 +86,16 @@ ProjectDetails = reduxForm({
 
 function mapDispatchToProps(dispatch) {
   return {
-    addFeedback: bindActionCreators(addFeedback, dispatch),
+    addFeedback: bindActionCreators(addFeedback, dispatch)
   }
 }
 
 function mapStateToProps(state, props) {
+  console.log('state in mstp', state)
   return {
-    project: state.projects.filter(project => project.id === +props.match.params.proj_id)[0]
+    project: state.projects.filter(
+      project => project.id === +props.match.params.proj_id
+    )[0]
   }
 }
 

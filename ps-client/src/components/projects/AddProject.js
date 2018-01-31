@@ -7,6 +7,7 @@ import { addProject } from '../../actions/projects'
 
 class AddProject extends Component {
   addProject = project => {
+    project.author_id = this.props.user_id
     project.collection_id = +project.collection_id
     this.props.addProject(project, this.props.history)
   }
@@ -118,10 +119,10 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, props) {
   return {
-    // TODO: Needs to integrate with auth to replace the 1 with user's school id
     collections: state.collections.filter(
       collection => collection.school_id === state.auth.user.school_id
-    )
+    ),
+    user_id: state.auth.user.id
   }
 }
 
