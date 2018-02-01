@@ -13,6 +13,7 @@ import { getSchools } from './actions/schools'
 import { isAuthed } from './actions/auth'
 
 const StoreInstance = Store()
+console.log('store', StoreInstance)
 
 StoreInstance.dispatch(getCollections())
 StoreInstance.dispatch(getFeedbacks())
