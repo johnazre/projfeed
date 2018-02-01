@@ -7,7 +7,7 @@ import { userSignup } from '../../actions/auth'
 
 export class Signup extends Component {
   state = {
-    isValid: true
+    isValid: null
   }
   userSignup = user => {
     if(user.password !== user.verify_password) {
