@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Container, Row, Col, Input, FormFeedback } from 'reactstrap'
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Container,
+  Row,
+  Col,
+  Alert
+} from 'reactstrap'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -7,11 +16,16 @@ import { userSignup } from '../../actions/auth'
 
 export class Signup extends Component {
   state = {
-    isValid: null
+    isValid: true,
+    passwordClasses: 'form-control'
   }
   userSignup = user => {
-    if(user.password !== user.verify_password) {
-      this.setState({isValid: false})
+    console.log('user', user)
+    if (user.password !== user.verify_password) {
+      this.setState({ 
+        passwordClasses: this.state.passwordClasses + ' is-invalid',
+        isValid: false
+      })
     } else {
       this.props.userSignup(user, this.props.history)
     }
@@ -34,7 +48,8 @@ export class Signup extends Component {
                 <Label for="name">Name</Label>
                 <Field
                   name="name"
-                  component={Input}
+                  component="input"
+                  className="form-control"
                   type="text"
                   id="name"
                 />
@@ -43,7 +58,8 @@ export class Signup extends Component {
                 <Label for="email">Email</Label>
                 <Field
                   name="email"
-                  component={Input}
+                  component="input"
+                  className="form-control"
                   type="email"
                   id="email"
                 />
@@ -52,29 +68,31 @@ export class Signup extends Component {
                 <Label for="password">Password</Label>
                 <Field
                   name="password"
-                  component={Input}
+                  component="input"
+                  className={this.state.passwordClasses}
                   type="password"
                   id="password"
                   valid={this.state.isValid}
-                  onChange={() => alert('heard')}
                 />
               </FormGroup>
               <FormGroup>
                 <Label for="verify_password">Verify Password</Label>
                 <Field
                   name="verify_password"
-                  component={Input}
+                  component="input"
+                  className={this.state.passwordClasses}
                   type="password"
                   id="verify_password"
                   valid={this.state.isValid}
                 />
-                <FormFeedback>Passwords do not match.</FormFeedback>
+                { !this.state.isValid ? <Alert color="danger">Passwords do not match</Alert> : null}
               </FormGroup>
               <FormGroup>
                 <Label for="school">School</Label>
                 <Field
                   name="school_id"
-                  component={Input}
+                  component="select"
+                  className="form-control"
                   type="select"
                   id="school"
                 >
@@ -89,9 +107,9 @@ export class Signup extends Component {
               <FormGroup>
                 <Label for="role">Are you a student or a staff member?</Label>
                 <Field
-                  component={Input}
-                  type="select"
+                  component="select"
                   name="role_id"
+                  className="form-control"
                 >
                   <option value="1">Student</option>
                   <option value="2">Staff</option>
